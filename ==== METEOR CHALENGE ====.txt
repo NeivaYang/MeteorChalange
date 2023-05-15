@@ -1,0 +1,25 @@
+==================== METEOR CHALENGE =====================
+
+--> Estrelas => 315
+--> Meteoros => 328	
+--> Meteoros Caindo na Água => 105
+
+==========================================================
+==========================================================
+
+Para resolver as 3 questões, escrevi um codigo em python usando 
+a biblioteca pillow para varrer a imagem pixel por pixel identificando 
+as cores dos meteoros e das estrelas e armazenando a soma do total.
+
+Para a questão dos meteoros que caem na água particularmente, elaborei uma função a mais para
+identificar as coordenadas da superficie das cinco lagoas presentes na imagens e 
+usando os dados das coordenadas foi possivel contar quantos meteoros estavam faixa das lagoas. 
+
+primeira lagoa = 59 - 94 eixo X
+segunda lagoa = 126 - 160 eixo X
+terceira lagoa = 241 - 296 eixo X
+quarta lagoa = 473 - 533 eixo X
+quinta lagoa = 664 - 696 eixo x
+
+==========================================================
+==========================================================
