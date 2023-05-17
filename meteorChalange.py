@@ -6,6 +6,40 @@ from collections import defaultdict
 
 # # Exibir a imagem
 # image.show()
+
+def modify_colors(image_path, target_color, new_color):
+    # Abre a imagem
+    image = Image.open(image_path)
+
+    # Verifica o modo de cor da imagem e converte para RGB, se necessário
+    if image.mode != 'RGB':
+        image = image.convert('RGB')
+
+    # Obtém as dimensões da imagem
+    width, height = image.size
+
+    # Cria uma nova imagem com as mesmas dimensões e modo de cor
+    new_image = Image.new("RGB", (width, height))
+
+    # Varre todos os pixels da imagem
+    for y in range(height):
+        for x in range(width):
+            # Obtém a cor do pixel (R, G, B)
+            r, g, b = image.getpixel((x, y))
+
+            # Verifica se a cor do pixel corresponde à cor alvo
+            if (r, g, b) == target_color:
+                # Altera a cor do pixel para a nova cor desejada
+                new_image.putpixel((x, y), new_color)
+            else:
+                # Mantém a cor original do pixel
+                new_image.putpixel((x, y), (r, g, b))
+
+    # Salva a nova imagem
+    new_image.save(r"C:\meteor chalange\imgModified.png")
+    new_image.show()
+
+###################################################################
 def find_color_ranges(image_path, target_color):
     # Abre a imagem
     image = Image.open(image_path)
@@ -86,6 +120,13 @@ def count_colors(image_path):
     # Retorna a contagem
     return color_counts
 
+
+# Cor alvo que será modificada (por exemplo, branco)
+colorToChange = (255, 255, 255)
+
+# Nova cor desejada para os pixels encontrados
+colorChanged = (0, 0, 0)  # Altere para a cor desejada
+
 # Caminho da imagem do meteor chalange
 image_path = r"C:\meteor chalange\meteor_challenge_01.png"
 
@@ -93,6 +134,9 @@ image_path = r"C:\meteor chalange\meteor_challenge_01.png"
 colors = count_colors(image_path)
 
 target_color = (0, 0, 255) 
+
+# Chama a função para modificar as cores e gerar a nova imagem
+modify_colors(image_path, colorToChange, colorChanged)
 
 # Chama a função para encontrar as faixas de coordenadas da cor alvo
 color_ranges = find_color_ranges(image_path, target_color)
